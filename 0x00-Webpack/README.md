@@ -1,0 +1,1 @@
+Webpack is a popular open-source JavaScript module bundler. It's used primarily in web development to bundle JavaScript files for usage in a browser, but it can also transform or bundle various other types of assets such as HTML, CSS, and images.
