@@ -40,5 +40,10 @@
     "gh-pages": "^6.1.1"
   },
   "homepage": "https://Ochala27.github.io/alx-react"
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+}
+
 }
 
