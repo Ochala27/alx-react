@@ -1,24 +1,24 @@
+// src/App.js
 import React from 'react';
-import holbertonLogo from './holberton_logo.png';
 import './App.css';
-import { getFullYear, getFooterCopy } from './utils';
+import Notifications from './components/Notifications/Notifications';
+import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import Footer from './components/Footer/Footer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={holbertonLogo} className="App-logo" alt="Holberton Logo" />
-        <h1>School dashboard</h1>
-      </header>
-      <div className="App-body">
-        <p>Login to access the full dashboard</p>
+    <React.Fragment>
+      <Notifications />
+      <div className="App">
+        <Header />
+        <main className="App-main">
+          <Login />
+        </main>
+        <Footer />
       </div>
-      <footer className="App-footer">
-        <p>Copyright {getFullYear()} - {getFooterCopy(false)}</p>
-      </footer>
-    </div>
+    </React.Fragment>
   );
-}
+};
 
 export default App;
-

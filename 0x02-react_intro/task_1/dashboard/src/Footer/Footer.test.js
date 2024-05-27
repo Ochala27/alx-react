@@ -13,4 +13,3 @@ describe('<Footer />', () => {
     expect(wrapper.text()).toContain('Copyright');
   });
 });
-

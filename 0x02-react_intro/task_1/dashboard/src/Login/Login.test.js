@@ -14,4 +14,3 @@ describe('<Login />', () => {
     expect(wrapper.find('label')).toHaveLength(2);
   });
 });
-
