@@ -1,78 +1,47 @@
-import React, { Component } from 'react';
-import Notifications from '../Notifications/Notifications';
-import { getLatestNotification } from '../utils/utils';
+import { shallow } from 'enzyme';
+import React from 'react';
+import App from './App';
 import Login from '../Login/Login';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import CourseList from '../CourseList/CourseList';
-import PropTypes from 'prop-types';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  render() {
-    const { isLoggedIn } = this.props;
-    return (
-      <div className="App">
-        <Notifications listNotifications={listNotifications} />
-        <Header />
-        <div className="App-body">
-          {isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login />}
-        </div>
-        <div className="App-footer">
-          <Footer />
-        </div>
-      </div>
-    );
-  }
-}
+// shallow render app component
+describe('<App />', () => {
+	it('Tests that App renders without crashing', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.exists()).toBe(true);
+	})
 
-const listCourses = [
-  {
-    id: 1,
-    name: 'ES6',
-    credit: '60'
-  },
-  {
-    id: 2,
-    name: 'Webpack',
-    credit: '20'
-  },
-  {
-    id: 3,
-    name: 'React',
-    credit: '40'
-  }
-];
+	it('Contains Header component', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.find('Header').length).toBe(1);
+	})
 
-const listNotifications = [
-  {
-    id: 1,
-    type: "default",
-    value: "New course available"
-  },
-  {
-    id: 2,
-    type: "urgent",
-    value: "New resume available"
-  },
-  {
-    id: 3,
-    html: {
-      __html: getLatestNotification()
-    },
-    type: "urgent"
-  }
-];
+	it('Contains Login component', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.contains(<Login />)).toBe(true);
+	})
 
-App.defaultProps = {
-  isLoggedIn: false
-};
+	it('Contains Footer component', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.find('Footer').length).toBe(1);
+	})
 
-App.propTypes = {
-  isLoggedIn: PropTypes.bool
-};
+	it('Tests that CourseList is not displayed', () => {
+		const wrapper = shallow(<App />);
+		expect(wrapper.find('CourseList').length).toBe(0);
+	})
+});
 
-export default App;
+
+// describe case when isLoggedIn is true
+describe('<App />', () => {
+	it('Tests that the Login component is not rendered', () => {
+		const wrapper = shallow(<App isLoggedIn={true} />);
+		expect(wrapper.contains(<Login />)).toBe(false);
+	})
+
+	it('Tests that CourseList component is rendered', () => {
+		const wrapper = shallow(<App isLoggedIn />);
+		expect(wrapper.find('CourseList').length).toBe(1);
+	})
+})
