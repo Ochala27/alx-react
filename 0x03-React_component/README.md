@@ -1,1 +1,0 @@
-A React component is a fundamental building block of a React application. It is a self-contained module that renders some part of the user interface. Components can be thought of as custom HTML elements, and they can be either class-based or function-based.

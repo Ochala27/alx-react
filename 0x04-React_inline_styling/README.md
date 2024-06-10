@@ -1,0 +1,1 @@
+In React, inline styling is a common way to apply CSS styles directly to elements using the style attribute. Inline styles in React are specified as an object where the keys are camelCased versions of the CSS properties, and the values are the respective styles. Here's how you can use inline styling in a React component:
