@@ -1,0 +1,1 @@
+In React, state is a way to manage and control data that changes over time within a component. State allows components to create dynamic and interactive user interfaces. When the state of a component changes, React automatically re-renders the component to reflect the new state.
