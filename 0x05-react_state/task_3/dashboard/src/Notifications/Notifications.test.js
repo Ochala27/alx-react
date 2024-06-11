@@ -1,11 +1,15 @@
-
-import { shallow } from 'enzyme';
+import { shallow, mount, unmount } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 import React from 'react';
 import NotificationItem from './NotificationItem';
 
 
 // shallow render NotificationItem component
 describe('<NotificationItem />', () => {
+	beforeEach(() => {
+		StyleSheetTestUtils.suppressStyleInjection();
+	});
+
 	it('Tests that NotificationItem renders without crashing', () => {
 		const wrapper = shallow(<NotificationItem />);
 		expect(wrapper.exists()).toBe(true);
@@ -26,4 +30,3 @@ describe('<NotificationItem />', () => {
 		expect(wrapper.html()).toContain('dangerouslySetInnerHtml');
 	})
 })
-
