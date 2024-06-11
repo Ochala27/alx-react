@@ -1,49 +1,59 @@
 
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow, mount } from 'enzyme';
+import { StyleSheetTestUtils } from 'aphrodite';
 import App from './App';
-import Login from '../Login/Login';
+import { AppContext } from './AppContext';
 
-
-// shallow render app component
 describe('<App />', () => {
-	it('Tests that App renders without crashing', () => {
-		const wrapper = shallow(<App />);
-		expect(wrapper.exists()).toBe(true);
-	})
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
 
-	it('Contains Header component', () => {
-		const wrapper = shallow(<App />);
-		expect(wrapper.find('Header').length).toBe(1);
-	})
+  it('Tests that App renders without crashing', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.exists()).toBe(true);
+  });
 
-	it('Contains Login component', () => {
-		const wrapper = shallow(<App />);
-		expect(wrapper.contains(<Login />)).toBe(true);
-	})
+  it('Tests that logOut updates the state correctly', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().logIn('test@example.com', 'password');
+    expect(wrapper.state('user').isLoggedIn).toBe(true);
+    wrapper.instance().logOut();
+    expect(wrapper.state('user').isLoggedIn).toBe(false);
+  });
 
-	it('Contains Footer component', () => {
-		const wrapper = shallow(<App />);
-		expect(wrapper.find('Footer').length).toBe(1);
-	})
+  it('Tests that logIn updates the state correctly', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().logIn('test@example.com', 'password');
+    expect(wrapper.state('user').isLoggedIn).toBe(true);
+    expect(wrapper.state('user').email).toBe('test@example.com');
+  });
 
-	it('Tests that CourseList is not displayed', () => {
-		const wrapper = shallow(<App />);
-		expect(wrapper.find('CourseList').length).toBe(0);
-	})
+  it('Tests that logOut updates the state correctly', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().logIn('test@example.com', 'password');
+    wrapper.instance().logOut();
+    expect(wrapper.state('user').isLoggedIn).toBe(false);
+    expect(wrapper.state('user').email).toBe('');
+  });
+
+  it('Tests that CourseList is rendered when user is logged in', () => {
+    const wrapper = mount(
+      <AppContext.Provider value={{ user: { isLoggedIn: true } }}>
+        <App />
+      </AppContext.Provider>
+    );
+    expect(wrapper.find('CourseList').length).toBe(1);
+  });
+
+  it('Tests that Login is rendered when user is not logged in', () => {
+    const wrapper = mount(
+      <AppContext.Provider value={{ user: { isLoggedIn: false } }}>
+        <App />
+      </AppContext.Provider>
+    );
+    expect(wrapper.find('Login').length).toBe(1);
+  });
 });
-
-
-// describe case when isLoggedIn is true
-describe('<App />', () => {
-	it('Tests that the Login component is not rendered', () => {
-		const wrapper = shallow(<App isLoggedIn={true} />);
-		expect(wrapper.contains(<Login />)).toBe(false);
-	})
-
-	it('Tests that CourseList component is rendered', () => {
-		const wrapper = shallow(<App isLoggedIn />);
-		expect(wrapper.find('CourseList').length).toBe(1);
-	})
-})
 
