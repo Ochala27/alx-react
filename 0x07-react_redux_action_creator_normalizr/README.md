@@ -1,0 +1,1 @@
+Using Redux with Normalizr can streamline the process of normalizing and managing nested data structures in your Redux store. Below, I'll guide you through creating an action creator that fetches data, normalizes it using Normalizr, and then dispatches the normalized data to the Redux store.
