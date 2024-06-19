@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "aphrodite": "^2.4.0"
+    "aphrodite": "^2.4.0",
+    "fetch-mock": "^10.0.7",
+    "node-fetch": "^3.3.2",
+    "redux": "^5.0.1",
+    "redux-mock-store": "^1.5.4",
+    "redux-thunk": "^3.1.0"
   }
 }
