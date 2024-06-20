@@ -1,3 +1,4 @@
+
 import { schema, normalize } from 'normalizr';
 import * as notificationsData from '../notifications.json';
 

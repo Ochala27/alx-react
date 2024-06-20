@@ -1,3 +1,4 @@
+
 import { normalize, schema } from 'normalizr';
 import * as notificationsData from '../notifications.json';
 import { getAllNotificationsByUser } from './notifications';
