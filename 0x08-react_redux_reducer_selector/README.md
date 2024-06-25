@@ -1,0 +1,1 @@
+React-Redux is a library that provides a way to manage and centralize the state in a React application using Redux. It helps to ensure that the state is predictable and can be shared across components efficiently.
