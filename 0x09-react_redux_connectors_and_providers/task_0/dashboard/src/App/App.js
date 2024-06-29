@@ -4,19 +4,21 @@ import './App.css';
 
 class App extends React.Component {
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, displayDrawer } = this.props;
     return (
       <div className="App">
         {isLoggedIn ? <h1>Welcome Back!</h1> : <h1>Please Log In</h1>}
+        {displayDrawer && <div className="notification-drawer">Notifications</div>}
       </div>
     );
   }
 }
 
 // Function to map state to props
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.uiReducer.isLoggedIn
+    isLoggedIn: state.get('isUserLoggedIn'),
+    displayDrawer: state.get('isNotificationDrawerVisible')
   };
 };
 
