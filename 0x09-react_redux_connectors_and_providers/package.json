@@ -5,6 +5,7 @@
     "immutable": "^4.3.6",
     "node-fetch": "^3.3.2",
     "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^3.1.0"
   }
